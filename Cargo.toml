@@ -3,5 +3,8 @@ name = "theos-math"
 version = "0.1.0"
 edition = "2024"
 authors = ["FPG Schiba <craftzockerlp@gmail.com>"]
+description = "A mathematical library for vector and color operations."
+license = "MIT"
+repository = "https://github.com/FPGSchiba/theos-math"
 
 [dependencies]
