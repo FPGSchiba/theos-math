@@ -1,9 +1,6 @@
-mod colors;
-mod vec3;
-
 use std::io;
-use colors::Color;
-
+use theos_math::colors::Color;
+use theos_math::colors;
 
 fn main() {
     // Image

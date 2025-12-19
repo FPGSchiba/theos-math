@@ -12,3 +12,15 @@ pub fn write_color(out: &mut impl Write, pixel_color: Color) {
     let b = (255.999 * pixel_color.z()) as i32;
     writeln!(out, "{} {} {}", r, g, b).expect("writing color");
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_write_color() {
+        let mut out = Vec::new();
+        write_color(&mut out, Color::new(0.2, 0.3, 0.4));
+        assert_eq!(out, b"51 76 102\n".to_vec());
+    }
+}

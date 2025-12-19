@@ -1,0 +1,32 @@
+name: Test & Coverage
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    name: Test and Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install cargo-tarpaulin
+        run: cargo install cargo-tarpaulin
+
+      - name: Run tests and generate coverage
+        # output-dir is usually root, output format xml is best for Codecov
+        run: cargo tarpaulin --verbose --workspace --timeout 120 --out Xml
+
+      - name: Upload to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # Required for private repos, recommended for public
+          files: ./cobertura.xml
+          fail_ci_if_error: true
